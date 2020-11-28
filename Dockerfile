@@ -70,7 +70,7 @@ ADD src /
 # - Set permissions
 # ------------------------------------------------------------------------------
 RUN ln -sf \
-		/usr/share/zoneinfo/UTC \
+		/usr/share/zoneinfo/Asia/Kolkata \
 		/etc/localtime \
 	&& echo "NETWORKING=yes" \
 		> /etc/sysconfig/network \
