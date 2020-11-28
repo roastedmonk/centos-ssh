@@ -35,6 +35,10 @@ RUN rpm --rebuilddb \
 		yum-versionlock\
 		yum-plugin-versionlock\
 		yum-plugin-versionlock-1.1.31-52.el7 \
+        sudo\
+        deltarpm\
+		wget\
+		curl\
 	&& yum versionlock add \
 		inotify-tools \
 		openssh \
@@ -54,6 +58,9 @@ RUN rpm --rebuilddb \
 	&& rm -rf /usr/{{lib,share}/locale,share/{man,doc,info,cracklib,i18n},{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive} \
 	&& rm -rf /{root,tmp,var/cache/{ldconfig,yum}}/* \
 	&& > /etc/sysconfig/i18n
+
+RUN yum update -y
+RUN yum --security update -y
 
 # ------------------------------------------------------------------------------
 # Copy files into place
@@ -97,8 +104,8 @@ RUN wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry
 RUN yum update
 RUN yum install epel-release
 RUN yum update
-RUN yum install python-pip python38-pip nodejs wget cf-cli -y
-RUN pip3 install --upgrade pip
+RUN yum install python-pip python36 nodejs wget cf-cli -y
+RUN pip3 install --upgrade pip --user
 RUN pip3 install awscli --upgrade --user
 
 EXPOSE 22
@@ -123,13 +130,13 @@ ENV \
 	SSH_USER_PASSWORD_HASHED="false" \
 	SSH_USER_PRIVATE_KEY="" \
 	SSH_USER_SHELL="/bin/bash" \
-	SYSTEM_TIMEZONE="UTC"
+	SYSTEM_TIMEZONE="Asia/Kolkata"
 
 # ------------------------------------------------------------------------------
 # Set image metadata
 # ------------------------------------------------------------------------------
 LABEL \
-	maintainer="James Deathe <james.deathe@gmail.com>" \
+	maintainer="Subramaniam Natarajan <subramaniam@engineer.com>" \
 	install="docker run \
 --rm \
 --privileged \
