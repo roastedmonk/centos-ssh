@@ -26,19 +26,17 @@ RUN rpm --rebuilddb \
 	&& yum -y install \
 			--setopt=tsflags=nodocs \
 			--disableplugin=fastestmirror \
-		inotify-tools-3.14-8.el7 \
-		openssh-clients-7.4p1-21.el7 \
-		openssh-server-7.4p1-21.el7 \
-		openssl-1.0.2k-19.el7 \
-		python-setuptools-0.9.8-7.el7 \
-		sudo-1.8.23-4.el7 \
-		yum-versionlock\
-		yum-plugin-versionlock\
-		yum-plugin-versionlock-1.1.31-52.el7 \
-        sudo\
-        deltarpm\
-		wget\
-		curl\
+		inotify-tools \
+		openssh-clients \
+		openssh-server \
+		openssl \
+		python-setuptools \
+		sudo \
+		yum-versionlock \
+		yum-plugin-versionlock \
+                deltarpm \
+		wget \
+		curl \
 	&& yum versionlock add \
 		inotify-tools \
 		openssh \
@@ -61,7 +59,6 @@ RUN rpm --rebuilddb \
 
 RUN yum update -y
 RUN yum --security update -y
-
 # ------------------------------------------------------------------------------
 # Copy files into place
 # ------------------------------------------------------------------------------
