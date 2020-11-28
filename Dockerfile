@@ -1,6 +1,6 @@
 FROM centos:7.6.1810
 
-ARG RELEASE_VERSION="2.6.1"
+ARG RELEASE_VERSION="3.0.0"
 
 # ------------------------------------------------------------------------------
 # - Import the RPM GPG keys for repositories
@@ -37,6 +37,7 @@ RUN rpm --rebuilddb \
                 deltarpm \
 		wget \
 		curl \
+		cronie \
 	&& yum versionlock add \
 		inotify-tools \
 		openssh \
@@ -154,12 +155,12 @@ jdeathe/centos-ssh:${RELEASE_VERSION} \
 --name=\${NAME} \
 --tag=${RELEASE_VERSION} \
 --setopt='--volume {{NAME}}.config-ssh:/etc/ssh'" \
-	org.deathe.name="centos-ssh" \
+	org.deathe.name="centos7-tool" \
 	org.deathe.version="${RELEASE_VERSION}" \
-	org.deathe.release="jdeathe/centos-ssh:${RELEASE_VERSION}" \
+	org.deathe.release="omkar2020/centos7-tool:${RELEASE_VERSION}" \
 	org.deathe.license="MIT" \
-	org.deathe.vendor="jdeathe" \
-	org.deathe.url="https://github.com/jdeathe/centos-ssh" \
+	org.deathe.vendor="omkar2020" \
+	org.deathe.url="https://github.com/roastedmonk/centos-ssh" \
 	org.deathe.description="OpenSSH 7.4 / Supervisor 4.0 / EPEL/IUS/SCL Repositories - CentOS-7 7.6.1810 x86_64."
 
 HEALTHCHECK \
