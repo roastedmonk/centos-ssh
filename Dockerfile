@@ -90,6 +90,15 @@ RUN ln -sf \
 	&& chmod 700 \
 		/usr/{bin/healthcheck,sbin/{scmi,sshd-{bootstrap,wrapper},system-{timezone,timezone-wrapper}}}
 
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+RUN wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo
+RUN yum update
+RUN yum install epel-release
+RUN yum update
+RUN yum install python-pip python38-pip nodejs wget cf-cli -y
+RUN pip3 install --upgrade pip
+RUN pip3 install awscli --upgrade --user
+
 EXPOSE 22
 
 # ------------------------------------------------------------------------------
