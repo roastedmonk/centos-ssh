@@ -38,6 +38,7 @@ RUN rpm --rebuilddb \
 		wget \
 		curl \
 		cronie \
+		nano \
 	&& yum versionlock add \
 		inotify-tools \
 		openssh \
